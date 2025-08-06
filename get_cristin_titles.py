@@ -14,7 +14,7 @@ def get_entries(author, year):
     responce = requests.get(f'{baseurl}/results?{url_part}')
 
     results_data = json.loads(responce.content)
-    print(results_data)
+    # print(results_data)
 
     return results_data
 
@@ -24,7 +24,10 @@ def get_titles(entries):
 
 
 if __name__ == "__main__":
-    results_data = get_entries('Sergey Alyaev', 2022)
+    results_data = []
+    for year in range(2020,2025):
+        results_data_for_year = get_entries('Sergey Alyaev', 2022)
+        results_data += results_data_for_year
     titles = get_titles(results_data)
     for i, title in enumerate(titles):
         print(f'{i+1}. {title}')
