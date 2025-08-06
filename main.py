@@ -80,12 +80,17 @@ Answer with just the number (1–5)."""
 
 
 def broader_concept(phrase1, phrase2):
-    prompt = f"""Which of the phrases is the broader concept
+    prompt = f"""You previously classified these two keyword phrases as:
 
-    Phrase 1: "{phrase1}"
-    Phrase 2: "{phrase2}"
+"Tight generalization or specialization — One is a general or specific case of the other, and they are usually discussed together. This only applies if one term directly defines or contains the other as a core technical sub-concept."
 
-    Return the phrase with no punctuation numbers or other details"""
+Based on that definition, which phrase is the broader technical concept?
+
+Phrase 1: "{phrase1}"
+Phrase 2: "{phrase2}"
+
+Return the phrase with no punctuation numbers or other details"""
+
     response = make_determenistic_request(prompt).strip().lower()
     if response == phrase1.lower():
         return phrase1
@@ -121,29 +126,40 @@ with open("citations.csv", newline='', encoding='utf-8') as csvfile:
 
 all_keywords_count = {}
 for i, title in enumerate(titles):
-    print(f"{i}. {title}")
+    print(f"{i+1}. {title}")
     keywords = extract_keywords(title)
 
-    for new_keyword in keywords:
+    for j, new_keyword in enumerate(keywords):
+        print(f"Analyzing keyword {j+1}: {new_keyword}")
         matched = False
         for old_keyword in all_keywords_count:
             same_concept_result = same_concept(new_keyword, old_keyword)
             if same_concept_result[0]:
-                all_keywords_count[old_keyword] += 1
-                print(f"{old_keyword}: {all_keywords_count[old_keyword]}")
+                if new_keyword.lower() != old_keyword.lower():
+                    all_keywords_count[old_keyword]['included_terms'].append(new_keyword)
+                all_keywords_count[old_keyword]['count'] += 1
+                print(f"{old_keyword}: {all_keywords_count[old_keyword]['count']}")
                 matched = True
                 break
             elif same_concept_result[1] == 3:
-                cur_count = all_keywords_count[old_keyword]
+                cur_info = all_keywords_count[old_keyword]
                 del all_keywords_count[old_keyword]
                 broader_keyword = broader_concept(new_keyword, old_keyword)
-                all_keywords_count[broader_keyword] = cur_count + 1
+                cur_info['included_terms'].append(new_keyword)
+                all_keywords_count[broader_keyword] = {
+                    'count': cur_info['count'] + 1,
+                    'included_terms': cur_info['included_terms']
+                }
                 print(f"Found broader '{broader_keyword}' that summarizes narrower '{old_keyword}', '{new_keyword}'")
-                print(f"{broader_keyword}: {all_keywords_count[broader_keyword]}")
+                print(f"{broader_keyword}: {all_keywords_count[broader_keyword]['count']}")
+                matched = True
                 break
         if not matched:
-            all_keywords_count[new_keyword] = 1
-            print(f"{new_keyword}: {all_keywords_count[new_keyword]}")
+            all_keywords_count[new_keyword] = {
+                'count': 1,
+                'included_terms': [new_keyword]
+            }
+            print(f"{new_keyword}: {all_keywords_count[new_keyword]['count']}")
 
 
 print(all_keywords_count)
