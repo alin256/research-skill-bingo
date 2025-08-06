@@ -6,6 +6,7 @@ if __name__ == "__main__":
     with open("input/names.txt",'r') as f:
         names = f.readlines()
         for name in tqdm(names):
+            name = name.replace('\n', ' ').strip()
             titles = get_titles_2020_2025(name)
             with open(f"output/titles/{name}.txt", 'w') as out_f:
                 for title in titles:

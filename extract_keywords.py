@@ -1,6 +1,7 @@
 import requests
 import csv
 import json
+from tqdm import tqdm
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "llama3.3:latest"
@@ -113,9 +114,9 @@ def same_concept(phrase1, phrase2):
         raise ValueError(f"Unexpected match level: {level}")
 
 
-def generate_keyword_dict(titles):
+def generate_keyword_dict(titles, name="person"):
     all_keywords_dict = {}
-    for i, title in enumerate(titles):
+    for i, title in enumerate(tqdm(titles, desc=f'Processing {name}', leave=False)):
         print(f"{i + 1}. {title}")
         keywords = extract_keywords(title)
 
