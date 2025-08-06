@@ -1,5 +1,6 @@
 import requests
 import csv
+import json
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "llama3.3:latest"
@@ -97,7 +98,9 @@ Return the phrase with no punctuation numbers or other details"""
     elif response == phrase2.lower():
         return phrase2
     else:
-        raise ValueError(f"Expected: '{phrase1}' or '{phrase2}'. Got: '{response}'")
+        print(f"Warning! Modified output keyword. Expected: '{phrase1}' or '{phrase2}'. Got: '{response}'")
+        return response
+
 
 def same_concept(phrase1, phrase2):
     level = classify_match_level(phrase1, phrase2)
@@ -110,56 +113,67 @@ def same_concept(phrase1, phrase2):
         raise ValueError(f"Unexpected match level: {level}")
 
 
+def generate_keyword_dict(titles):
+    all_keywords_dict = {}
+    for i, title in enumerate(titles):
+        print(f"{i + 1}. {title}")
+        keywords = extract_keywords(title)
 
-# Example usage
-titles = ["A decision support system for multi-target geosteering",
-          "Modeling extra-deep electromagnetic logs using a deep neural network",
-          "An ensemble-based framework for proactive geosteering"]
-
-titles = []
-with open("citations.csv", newline='', encoding='utf-8') as csvfile:
-    reader = csv.DictReader(csvfile)
-    for row in reader:
-        title = row.get("Title")
-        if title:
-            titles.append(title)
-
-all_keywords_count = {}
-for i, title in enumerate(titles):
-    print(f"{i+1}. {title}")
-    keywords = extract_keywords(title)
-
-    for j, new_keyword in enumerate(keywords):
-        print(f"Analyzing keyword {j+1}: {new_keyword}")
-        matched = False
-        for old_keyword in all_keywords_count:
-            same_concept_result = same_concept(new_keyword, old_keyword)
-            if same_concept_result[0]:
-                if new_keyword.lower() != old_keyword.lower():
-                    all_keywords_count[old_keyword]['included_terms'].append(new_keyword)
-                all_keywords_count[old_keyword]['count'] += 1
-                print(f"{old_keyword}: {all_keywords_count[old_keyword]['count']}")
-                matched = True
-                break
-            elif same_concept_result[1] == 3:
-                cur_info = all_keywords_count[old_keyword]
-                del all_keywords_count[old_keyword]
-                broader_keyword = broader_concept(new_keyword, old_keyword)
-                cur_info['included_terms'].append(new_keyword)
-                all_keywords_count[broader_keyword] = {
-                    'count': cur_info['count'] + 1,
-                    'included_terms': cur_info['included_terms']
+        for j, new_keyword in enumerate(keywords):
+            print(f"Analyzing keyword {j + 1}: {new_keyword}")
+            matched = False
+            for old_keyword in all_keywords_dict:
+                same_concept_result = same_concept(new_keyword, old_keyword)
+                if same_concept_result[0]:
+                    if new_keyword.lower() != old_keyword.lower():
+                        all_keywords_dict[old_keyword]['included_terms'].append(new_keyword)
+                    all_keywords_dict[old_keyword]['count'] += 1
+                    print(f"{old_keyword}: {all_keywords_dict[old_keyword]['count']}")
+                    matched = True
+                    break
+                elif same_concept_result[1] == 3:
+                    cur_info = all_keywords_dict[old_keyword]
+                    del all_keywords_dict[old_keyword]
+                    broader_keyword = broader_concept(new_keyword, old_keyword)
+                    cur_info['included_terms'].append(new_keyword)
+                    all_keywords_dict[broader_keyword] = {
+                        'count': cur_info['count'] + 1,
+                        'included_terms': cur_info['included_terms']
+                    }
+                    print(
+                        f"Found broader '{broader_keyword}' that summarizes narrower '{old_keyword}', '{new_keyword}'")
+                    print(f"{broader_keyword}: {all_keywords_dict[broader_keyword]['count']}")
+                    matched = True
+                    break
+            if not matched:
+                all_keywords_dict[new_keyword] = {
+                    'count': 1,
+                    'included_terms': [new_keyword]
                 }
-                print(f"Found broader '{broader_keyword}' that summarizes narrower '{old_keyword}', '{new_keyword}'")
-                print(f"{broader_keyword}: {all_keywords_count[broader_keyword]['count']}")
-                matched = True
+                print(f"{new_keyword}: {all_keywords_dict[new_keyword]['count']}")
+    return all_keywords_dict
+
+
+if __name__ == "__main__":
+    # Example usage
+    titles = ["A decision support system for multi-target geosteering",
+              "Modeling extra-deep electromagnetic logs using a deep neural network",
+              "An ensemble-based framework for proactive geosteering"]
+
+    titles = []
+    with open("citations.csv", newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            title = row.get("Title")
+            if title:
+                titles.append(title)
+            if len(titles) >= 20:
                 break
-        if not matched:
-            all_keywords_count[new_keyword] = {
-                'count': 1,
-                'included_terms': [new_keyword]
-            }
-            print(f"{new_keyword}: {all_keywords_count[new_keyword]['count']}")
 
 
-print(all_keywords_count)
+    keywords_dict = generate_keyword_dict(titles)
+
+    print(keywords_dict)
+
+    with open("output.json", "w") as f:
+        json.dump(keywords_dict, f)
