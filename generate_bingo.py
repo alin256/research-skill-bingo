@@ -25,16 +25,18 @@ def latex_footer():
 """
     return footer
 
-def latex_page_start():
+def latex_page_start(name="Sample Name"):
     start_page = r"""
 \newpage
 \begin{center}
+\textbf{\Huge """ + name + r"""}\\
+\vspace{0.5cm}
 \begin{tikzpicture}
 """
     return start_page
 
 
-def latex_cell(x, y, value, cellwidth=4.5, cellheight=3, tex_size_modifier=''):
+def latex_cell(x, y, value, cellwidth=4.5, cellheight=2.75, tex_size_modifier=''):
     xpos = (x - 1) * cellwidth
     ypos = (5 - y) * cellheight  # still assuming 5 rows
     contents = rf"""  \draw[thick] ({xpos},{ypos}) rectangle ++({cellwidth},{cellheight});
@@ -45,6 +47,7 @@ def latex_cell(x, y, value, cellwidth=4.5, cellheight=3, tex_size_modifier=''):
 
 def latex_page_end():
     end_page = r"""\end{tikzpicture}
+This bingo card has been miticulously crafted by LLMs based on keywords from your recent publication titles.
 \end{center}
 
 """
