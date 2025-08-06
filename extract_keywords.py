@@ -78,8 +78,11 @@ Answer with just the number (1-5). {added_prompt}"""
     if response[0] in "12345":
         return int(response[0])
     else:
-        print(f"Unexpected model response: {response}")
-        return classify_match_level(phrase1, phrase2, added_prompt="If usure answer '5'.")
+        print(f"Unexpected model response, retrying: {response}")
+        if len(added_prompt) == 0:
+            return classify_match_level(phrase1, phrase2, added_prompt="If usure answer '5'.")
+        else:
+            raise ValueError(f"Unexpected model response: {response}")
 
 
 def broader_concept(phrase1, phrase2):
