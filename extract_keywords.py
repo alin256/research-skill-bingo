@@ -22,10 +22,10 @@ def make_determenistic_request(prompt):
 
 
 def extract_keywords(title):
-    prompt = f"""Extract 3–5 key technical self-explanatory terms or phrases from the following publication title:
+    prompt = f"""Extract 3-5 key technical self-explanatory terms or phrases from the following publication title:
 "{title}"
 
-Return only a comma-separated list of the keywords in lower case, no explanation."""
+Return only a comma-separated list of the keywords in English, lower case, no explanation."""
 
     result = make_determenistic_request(prompt)
 
@@ -55,7 +55,7 @@ def check_self_explanatory(term):
         raise RuntimeError(f"Ollama gives incorrect response: {answer}")
 
 
-def classify_match_level(phrase1, phrase2):
+def classify_match_level(phrase1, phrase2, added_prompt=''):
     prompt = f"""You are an expert in technical concept classification. Classify the semantic relationship between the following two keyword phrases.
 
 Only group concepts if they are used interchangeably or very tightly linked in technical literature. Do not group general terms like "porous media" with specific methods unless they are almost always discussed together in the same technical scope.
@@ -72,13 +72,14 @@ Choose one of the following levels:
 5. No match — The phrases describe different technical concepts, even if used in the same research area. Do not group phrases just because they may be used in the same application domain.
 
 
-Answer with just the number (1–5)."""
+Answer with just the number (1-5). {added_prompt}"""
 
     response = make_determenistic_request(prompt).strip()
     if response[0] in "12345":
         return int(response[0])
     else:
-        raise ValueError(f"Unexpected model response: {response}")
+        print(f"Unexpected model response: {response}")
+        return classify_match_level(phrase1, phrase2, added_prompt="If usure answer '5'.")
 
 
 def broader_concept(phrase1, phrase2):
@@ -91,7 +92,7 @@ Based on that definition, which phrase is the broader technical concept?
 Phrase 1: "{phrase1}"
 Phrase 2: "{phrase2}"
 
-Return the phrase with no punctuation numbers or other details"""
+Return the phrase with no punctuation (except dashes) numbers or other details"""
 
     response = make_determenistic_request(prompt).strip().lower()
     if response == phrase1.lower():
