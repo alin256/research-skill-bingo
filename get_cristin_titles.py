@@ -18,15 +18,25 @@ def get_entries(author, year):
 
     return results_data
 
+
 def get_titles(entries):
     titles = [result['title'][result['original_language']] for result in entries]
+    return titles
+
+
+def get_titles_2020_2025(name):
+    results_data = []
+    for year in range(2020,2025):
+        results_data_for_year = get_entries(name, year)
+        results_data += results_data_for_year
+    titles = get_titles(results_data)
     return titles
 
 
 if __name__ == "__main__":
     results_data = []
     for year in range(2020,2025):
-        results_data_for_year = get_entries('Sergey Alyaev', 2022)
+        results_data_for_year = get_entries('Sergey Alyaev', year)
         results_data += results_data_for_year
     titles = get_titles(results_data)
     for i, title in enumerate(titles):
