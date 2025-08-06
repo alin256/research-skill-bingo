@@ -12,6 +12,7 @@ for i in range(bingo_size):
 def latex_header():
     header = r"""
 \documentclass{article}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage[margin=1in, landscape]{geometry}
 \usepackage{tikz}
 \usepackage{pdflscape}
@@ -38,11 +39,12 @@ def latex_page_start(name="Sample Name"):
 
 def latex_cell(x, y, value, cellwidth=4.5, cellheight=2.75, tex_size_modifier=''):
     xpos = (x - 1) * cellwidth
-    ypos = (5 - y) * cellheight  # still assuming 5 rows
+    ypos = (5 - y) * cellheight
     contents = rf"""  \draw[thick] ({xpos},{ypos}) rectangle ++({cellwidth},{cellheight});
-  \node at ({xpos + cellwidth/2},{ypos + cellheight/2}) {{{tex_size_modifier} {value}}};
+  \node[align=center, text width={cellwidth - 0.4}cm] at ({xpos + cellwidth/2},{ypos + cellheight/2}) {{{tex_size_modifier} {value}}};
 """
     return contents
+
 
 
 def latex_page_end():
@@ -54,11 +56,13 @@ This bingo card has been miticulously crafted by LLMs based on keywords from you
     return end_page
 
 
-def generate_bingo(frequent_keywords: list):
-    bingo_text = latex_page_start()
+def generate_bingo(frequent_keywords: list, name: str = "Sample Name", tex_size_modifier: str = ''):
+    bingo_text = latex_page_start(name)
     for x in range(5):
         for y in range(5):
-            bingo_text += latex_cell(x, y, f"{x},{y}: {permutation[x*bingo_size + y]}")
+            bingo_text += latex_cell(x, y, 
+                f"{x},{y}: {permutation[x*bingo_size + y]} data assimilation and optimization", 
+                tex_size_modifier=tex_size_modifier)
     bingo_text += latex_page_end()
     return bingo_text
 
@@ -66,5 +70,5 @@ def generate_bingo(frequent_keywords: list):
 if __name__ == "__main__":
     with open('output/tex/bingo.tex', 'w') as f:
         f.write(latex_header())
-        f.write(generate_bingo([]))
+        f.write(generate_bingo([], name="Sample Name", tex_size_modifier='\\large'))
         f.write(latex_footer())
