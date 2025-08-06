@@ -1,8 +1,20 @@
+import random
+import numpy as np
+
+bingo_size = 5
+np.random.seed(0)
+permutation = list(np.random.permutation(bingo_size**2 - bingo_size))
+for i in range(bingo_size):
+    j = (i + 3) % bingo_size
+    index = i * bingo_size + j
+    permutation.insert(index, -1)
+
 def latex_header():
     header = r"""
 \documentclass{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=1in, landscape]{geometry}
 \usepackage{tikz}
+\usepackage{pdflscape}
 \begin{document}
 """
     return header
@@ -21,13 +33,15 @@ def latex_page_start():
 """
     return start_page
 
-def latex_cell(x, y, value, cellsize=3):
-    xpos = (x - 1) * cellsize
-    ypos = (5 - y) * cellsize  # assuming 5x5 grid, adjust if needed
-    contents = rf"""  \draw[thick] ({xpos},{ypos}) rectangle ++({cellsize},{cellsize});
-  \node at ({xpos + cellsize/2},{ypos + cellsize/2}) {{\footnotesize {value}}};
+
+def latex_cell(x, y, value, cellwidth=4.5, cellheight=3, tex_size_modifier=''):
+    xpos = (x - 1) * cellwidth
+    ypos = (5 - y) * cellheight  # still assuming 5 rows
+    contents = rf"""  \draw[thick] ({xpos},{ypos}) rectangle ++({cellwidth},{cellheight});
+  \node at ({xpos + cellwidth/2},{ypos + cellheight/2}) {{{tex_size_modifier} {value}}};
 """
     return contents
+
 
 def latex_page_end():
     end_page = r"""\end{tikzpicture}
@@ -37,12 +51,17 @@ def latex_page_end():
     return end_page
 
 
+def generate_bingo(frequent_keywords: list):
+    bingo_text = latex_page_start()
+    for x in range(5):
+        for y in range(5):
+            bingo_text += latex_cell(x, y, f"{x},{y}: {permutation[x*bingo_size + y]}")
+    bingo_text += latex_page_end()
+    return bingo_text
+
+
 if __name__ == "__main__":
-    with open('output/bingo.tex', 'w') as f:
+    with open('output/tex/bingo.tex', 'w') as f:
         f.write(latex_header())
-        f.write(latex_page_start())
-        for x in range(1, 6):
-            for y in range(1, 6):
-                f.write(latex_cell(x, y, f"Cell {x},{y}"))
-        f.write(latex_page_end())
+        f.write(generate_bingo([]))
         f.write(latex_footer())
