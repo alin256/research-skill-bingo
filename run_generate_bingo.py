@@ -51,9 +51,11 @@ def latex_cell(x, y, value, cellwidth=4.5, cellheight=2.75, tex_size_modifier=''
 
 
 
-def latex_page_end():
+def latex_page_end(additional_text=''):
     end_page = r"""\end{tikzpicture}
 This bingo card has been meticulously crafted by LLMs based on keywords from your recent publication titles.
+
+""" + additional_text + r"""
 \end{center}
 
 """
@@ -75,7 +77,10 @@ def generate_bingo(frequent_keywords: list, name: str = "Sample Name", tex_size_
                     # f"{x},{y}: {permutation[x*bingo_size + y]} data assimilation and optimization",
                     value='',
                     tex_size_modifier=tex_size_modifier)
-    bingo_text += latex_page_end()
+    additional_text = ''
+    if len(frequent_keywords) > 20:
+        additional_text = f'Suggestions: {", ".join(frequent_keywords[20:27])}'
+    bingo_text += latex_page_end(additional_text=additional_text)
     return bingo_text
 
 
@@ -92,7 +97,7 @@ if __name__ == "__main__":
                 print(f'\nProcessing {name}\n')
                 with open(full_path, 'r') as in_f:
                     keyword_dict = json.load(in_f)
-                    terms = extract_bingo_terms(keyword_dict)
+                    terms = extract_bingo_terms(keyword_dict, top_n=27)
                     if len(terms) < 20:
                         insufficient_terms_names.append(name)
                     f.write(generate_bingo(terms, name=name, tex_size_modifier='\\large'))
