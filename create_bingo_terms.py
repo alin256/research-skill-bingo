@@ -22,7 +22,8 @@ def extract_bingo_terms(keyword_dict, top_n = 20):
 
     result_terms = top_terms + sampled_terms
     terms_array = [term[0] for term in result_terms]
-    print(terms_array)
+    print(f'\nTotal terms found: {len(keyword_dict)}; returned: {len(terms_array)}')
+    return terms_array
 
 
 if __name__ == "__main__":
