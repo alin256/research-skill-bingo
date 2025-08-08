@@ -1,0 +1,102 @@
+Sensitivity analysis of an iterative ensemble Kalman filter method to interpret geothermal well logging
+Solar steam generation in fine dispersions of graphite particles
+Geosteering Competition
+Machine learning in real-time geosteering application: a DNN model for extra-deep EM logs and accounting for the model error during Bayesian inversion
+Geosteering with uncertainty quantification: ​ Man vs Machine
+Systematic Decisions Under Uncertainty: An Experiment Towards Better Geosteering Operations
+Systematic decisions under uncertainty : An experiment towards better geosteering operations
+Multi-Trajectory Hydraulic Model for More Accurate Geosteering Constraints
+Multi-Trajectory Hydraulic Model for More Accurate Geosteering Constraints
+Probabilistic Geological Predictions and EM-Log Modelling using Deep Neural Networks
+A numerical study of flow field and particle deposition in nasal channels with deviant geometry
+Modeling extra-deep electromagnetic logs using a deep neural network
+REAL-TIME ENSEMBLE-BASED WELL-LOG INTERPRETATION FOR GEOSTEERING
+Real-Time Ensemble-Based Well-Log Interpretation for Geosteering
+Deep learning for prediction of complex geology ahead of drilling
+Deep learning for prediction of complex geology ahead of drilling
+Drilling performance predictions with drilling efficiency uncertainty (Demo in OpenLab Drilling)
+Deep learning model of logging-while-drilling electromagnetic measurements
+Real-time probabilistic inversion of DNN-based DeepEM model while accounting for model error
+Geological Predictions and Electromagnetic-Log Modelling using Deep Neural Networks
+Probabilistic forecasting for geosteering in fluvial successions using a generative adversarial network
+Unlocking the Human Factor: Geosteering Decision Making as a Component of Drilling Operational Efficacy
+Unlocking the human factor : Geosteering decision making as a component of drilling operational efficacy
+Drilling performance predicitons with drilling efficiency uncertainty (Demo in OpenLab Drilling)
+Using generative adversarial networks for probabilistic predictions of complex geology ahead of drilling
+Real-time probabilistic inversion with model-error assessment of a deep learning approximation of borehole electromagnetic measurements
+Probabilistic forecasting for geosteering in fluvial successions using a generative adversarial network
+Reducing 3D uncertainty by an ensemble-based geosteering workflow: an example from the Goliat field
+Improving forecast reliability of the decline curve models while accounting for model-error
+An interactive sequential-decision benchmark from geosteering
+Challenges of developing a geosteering AI Rosie
+Sequential probabilistic multi-modal inversion and prediction with deep learning 
+Deep learning for probabilistic inversion during geosteering
+Geosteering for IOR: Results and further opportunities
+Drilling Process Modelling with Deep Learning: Towards ROP Prediction
+Reinforcement learning ​for better geosteering decisions
+Reducing 3D uncertainty by an ensemble-based geosteering workflow: an example from the Goliat field
+Probabilistic forecasting for geosteering in fluvial successions using a generative adversarial network (conference extended abstract)
+Ensemble-Based Well-Log Interpretation and Uncertainty Quantification for Well Geosteering
+Probabilistic model-error assessment of deep learning proxies: An application to real-time inversion of borehole electromagnetic measurements
+Rate of Penetration Prediction Using Quantile Regression Deep Neural Networks
+Transfer Learning Approach to Prediction of Rate of Penetration in Drilling
+Transfer Learning Approach to Prediction of Rate of Penetration in Drilling
+Calibration and Prediction Improvement of Decline Curve Models While Accounting for Model Error
+Calibration and Prediction Improvement of Decline Curve Models While Accounting for Model Error
+Sequential Multi-Realization Probabilistic Interpretation of Well Logs and Geological Prediction by a Deep-Learning Method
+Sequential Multi-Realization Probabilistic Interpretation of Well Logs and Geological Prediction by a Deep-Learning Method
+Demo: Sequential prediction with noisy GR log and naïve ROP prediction 
+What can we learn after 10,000 geosteering decisions?
+What can we learn after 10,000 geosteering decisions?
+Direct Multi-Modal Inversion of Geophysical Logs Using Deep Learning
+Rate of Penetration Prediction Using Quantile Regression Deep Neural Networks
+Verification of a real-time ensemble-based method for updating earth model based on GAN
+Verification of a real-time method for updating the geosteering earth model based on GAN
+Real-time estimation of geological layers' profiles in an anisotropic environment while accounting for model-error: A case study on the Goliat field 
+What can we learn after 10000 geosteering decisions?
+Gamification of shallow geosteering 
+AI-based multi-modal interpretation of logs for ahead-of-bit probabilistic ROP prediction
+GPU-accelerated integral equation method for 3D modelling of induction logs
+Predicting likely stratigraphy realizations from shallow logs with AI
+AI‐based multi‐modal prediction of stratigraphy to inform drilling performance
+Geosteering results: It's time to understand where the bit is heading
+Exploring transfer learning for ROP prediction on the NCS
+A Study Suggests Geosteers Often Miss the Target
+Demo: Chatbot for NCS well data
+Enhancing the Detectability of Deep-Sensing Borehole Electromagnetic Instruments by Joint Inversion of Multiple Logs Within a Probabilistic Geosteering Workflow
+Direct Multi-Modal Inversion of Geophysical Logs Using Deep Learning
+Towards Real-Time 3D Modeling of Induction Logs Using an Integral Equation Method
+Towards Real-Time 3D Modeling of Induction Logs Using an Integral Equation Method
+Improving predictive models for rate of penetration in real drilling operations through transfer learning
+Exploration of Strategies to Improve Continual Learning From Irregular Sequential Drilling Data
+Exploration of strategies to improve continual learning from irregular sequential drilling data
+3-D induction log modelling with integral equation method and domain decomposition pre-conditioning
+Ensemble History-Matching Workflow Using Interpretable Spade-Gan Geomodel
+DISTINGUISH from the depth of detection to the probabilistic distance of prediction
+3D Modeling and Inversion of Induction Logs.​ 2023 Highlights
+Integrating Reinforcement Learning and Particle Filter for Enhanced Geosteering Decision-Making
+Demo: Chatbot for oil and gas data
+Ensemble History-Matching Workflow Using Interpretable Spade-Gan Geomodel (Extended abstract)
+Ensemble history-matching workflow using interpretable SPADE-GAN geomodel
+Ensemble History-Matching Workflow Using Interpretable Spade-Gan Geomodel
+Enhancing information retrieval in the drilling domain : Zero-shot learning with large language models for question-answering
+Interactive Sequential-decision Geosteering Benchmark
+Code for Ensemble history-matching with SPADE-GAN geomodel
+Ensemble History-Matching Workflow Using Interpretable Spade-Gan Geomodel
+Application of Machine Learning to Predict Blockage in Multiphase Flow
+Numerical models of multiphase flows with sticky particles
+Enhancing Geosteering With AI: Integrating a Decision-Making Robot Into a Cloud-Based Environment and Benchmarking Against Human Experts 
+Enhancing geosteering with AI : Integrating a decision-making robot into a cloud-based environment and benchmarking against human experts 
+High-Precision Geosteering via Reinforcement Learning and Particle Filters
+AI-based multi-modal interpretation and extrapolation of geophysical logs
+ Inversion of Electromagnetic Induction Log in Anisotropic Media using an Adjoint Integral Equation Method
+Inversion of Electromagnetic Induction Log in Anisotropic Media using an Adjoint Integral Equation Method
+DISTINGUISH Workflow: a New Paradigm of Dynamic Well Placement Using Generative Machine Learning
+DISTINGUISH Workflow: a New Paradigm of Dynamic Well Placement Using Generative Machine Learning
+Optimizing Sequential Decisions in Geosteering: Reinforcement Learning vs Human Experts in Fast-Paced Uncertain Environment
+Strategic geosteering workflow with uncertainty quantification and deep learning: Initial test on the Goliat Field data
+Domain-adapted Embeddings Model Using Contrastive Learning for Drilling Text Data
+Laying the Foundation for Generative AI-Enhanced Geosteering: The Complete DISTINGUISH Workflow
+Improvement of Reinforcement Learning Strategies of the Pluralistic Robot Validated in Competitive Geosteering
+How to Explain Geology to a Robot? DISTINGUISHing Patterns for Optimal Geosteering Decisions
+Cloud-Free Question Answering from Internal Knowledge Bases: Building an AI for Drilling Applications
