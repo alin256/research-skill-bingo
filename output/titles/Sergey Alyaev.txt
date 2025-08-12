@@ -100,3 +100,19 @@ Laying the Foundation for Generative AI-Enhanced Geosteering: The Complete DISTI
 Improvement of Reinforcement Learning Strategies of the Pluralistic Robot Validated in Competitive Geosteering
 How to Explain Geology to a Robot? DISTINGUISHing Patterns for Optimal Geosteering Decisions
 Cloud-Free Question Answering from Internal Knowledge Bases: Building an AI for Drilling Applications
+Real-Time Geological Inversion for Decision-Making and Stratigraphic Inversion Exercise
+Latent Diffusion For Text Generation and its Application in Geology
+A Probabilistic Reinforcement Learning Framework for Optimized Decision-Making in Geosteering
+Geosteering Robot Powered by Multiple Probabilistic Interpretation and Artificial Intelligence: Benchmarking Against Human Experts
+Cloud-free question answering from internal knowledge bases: Building an AI for drilling applications
+Cloud-Free Question Answering Chatbot for Drilling Applications
+Value Creation in Sustainable Energy Transition Using Reinforcement Learning
+Exploration of Training Strategies for a Quantile Regression Deep Neural Network for the Prediction of the Rate of Penetration in a Multi-Lateral Well
+High-precision geosteering via reinforcement learning and particle filters
+Applied Transfer Learning in Drilling Engineering
+Analyzing expert decision-making in geosteering: Statistical insights from a large-scale controlled experiment
+Deep Learning Architectures for Predicting Geological Parameters of Pinch-Outs Using Deep Sensing Borehole Electromagnetic Instruments
+AI vs. Human Decision-Making
+Solving Geosteering as a Partially Observable Markov Decision Process: Integrating Deep Learning with Data Assimilation
+Incorporating Jacobian Information in Ensemble Kalman Inversion for Real-Time Geosteering
+AI-Enhanced Well-Steering: Open Workflow Implementation with Latent Space Geomodeling and Uncertainty Quantification
