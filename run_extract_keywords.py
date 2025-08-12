@@ -12,6 +12,8 @@ for filename in tqdm(os.listdir(folder_path)):
     if os.path.isfile(full_path) and filename.lower().endswith('.txt'):
         name = os.path.splitext(filename)[0].replace('\n', ' ').strip()
 
+        # Ensure the folder exists
+        os.makedirs("output/person_dicts", exist_ok=True)
         output_path = f"output/person_dicts/{name}.json"
         if os.path.exists(output_path):
             print(f"\nSkipping {name}")
