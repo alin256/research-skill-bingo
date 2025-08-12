@@ -1,5 +1,6 @@
 from tqdm import tqdm
 import re
+import os
 from get_cristin_titles import get_titles_2020_2025
 
 if __name__ == "__main__":
@@ -8,6 +9,8 @@ if __name__ == "__main__":
         for name in tqdm(names):
             name = name.replace('\n', ' ').strip()
             titles = get_titles_2020_2025(name)
+            # Ensure the folder exists
+            os.makedirs("output/titles", exist_ok=True)
             with open(f"output/titles/{name}.txt", 'w') as out_f:
                 for title in titles:
                     clean_title = re.sub(r'[\r\n]+', ' ', title)
