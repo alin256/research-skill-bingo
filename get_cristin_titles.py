@@ -26,7 +26,7 @@ def get_titles(entries):
 
 def get_titles_2020_2025(name):
     results_data = []
-    for year in range(2020,2025):
+    for year in range(2020,2025+1):
         results_data_for_year = get_entries(name, year)
         results_data += results_data_for_year
     titles = get_titles(results_data)
